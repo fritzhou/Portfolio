@@ -6,7 +6,7 @@ const profileImage = document.querySelector("#profile-image");
 if (profileImage && configured(config.profileImage)) {
   profileImage.src = config.profileImage;
   profileImage.addEventListener("error", () => {
-    profileImage.src = "assets/profile-placeholder.svg";
+    profileImage.src = "assets/profile-placeholder.svg.jpg";
   }, { once: true });
 }
 
