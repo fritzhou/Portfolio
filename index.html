@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="The student developer portfolio of Fritz Vohn, a Grade 12 TVL-ICT student at Lourdes College.">
+  <meta property="og:title" content="Fritz Vohn | Portfolio">
+  <meta property="og:description" content="Learning, building, and improving through practical technology projects.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/portfolio-preview.svg">
+  <meta name="theme-color" content="#f6f4ef">
+  <title>Fritz Vohn | Portfolio</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&amp;family=Manrope:wght@600;700;800&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="js/config.js" defer></script>
+  <script src="js/data.js" defer></script>
+  <script src="js/app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <nav class="nav container" aria-label="Primary navigation">
+      <a class="brand" href="#home" aria-label="Fritz Vohn, home"><span>FV</span>Fritz Vohn</a>
+      <button class="menu-button" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Open navigation"><span></span><span></span><span></span></button>
+      <div class="nav-links" id="nav-links">
+        <a href="#home">Home</a><a href="#about">About Me</a><a href="#projects">Projects</a><a href="#contact">Contact</a>
+        <a class="status-link" href="#opportunity"><span><i aria-hidden="true"></i> Open for opportunity</span></a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero container section" id="home">
+      <div class="hero-copy card reveal">
+        <p class="eyebrow">Hello, I'm</p>
+        <h1>Fritz <em>Vohn.</em></h1>
+        <h2>Grade 12 TVL-ICT Student &amp; Aspiring Developer</h2>
+        <p class="lead">I study at Lourdes College and develop my programming, web development, software, and technology skills by turning what I learn into practical projects.</p>
+        <div class="button-row"><a class="button primary" href="#projects">View my projects <span aria-hidden="true">↗</span></a><a class="button secondary" href="#contact">Contact me</a></div>
+      </div>
+      <aside class="profile card reveal" aria-label="Student profile summary">
+        <div class="profile-top"><div class="avatar" aria-hidden="true">FV</div><div><span class="available"><i></i> Available to learn</span><h2>Student developer</h2><p>Lourdes College · Philippines</p></div></div>
+        <div class="profile-grid"><div><small>Level</small><strong>Grade 12</strong></div><div><small>Strand</small><strong>TVL — ICT</strong></div><div><small>Focus</small><strong>Building skills</strong></div><div><small>Mindset</small><strong>Learn by doing</strong></div></div>
+        <div class="code-note"><span>currently_learning</span><strong>[ web, software, AI ]</strong></div>
+      </aside>
+    </section>
+
+    <section class="section container" id="about">
+      <div class="section-heading reveal"><div><p class="eyebrow">01 — About me</p><h2>Curious by nature.<br>Growing through practice.</h2></div><p>I am at the beginning of my developer journey—building a thoughtful foundation and staying curious about how technology can solve real problems.</p></div>
+      <div class="about-grid">
+        <article class="card about-main reveal"><span class="card-icon" aria-hidden="true">⌁</span><h3>A learner who likes to build</h3><p>I'm Fritz Vohn, a Grade 12 Senior High School student interested in programming, software development, and the web. I learn best by working on actual projects, understanding what goes wrong, and improving one step at a time.</p><p>My goal is not to know everything—it is to keep asking better questions, write better code, and create useful experiences.</p></article>
+        <article class="card education reveal"><span class="card-icon" aria-hidden="true">⌂</span><p class="overline">Education</p><h3>Lourdes College</h3><p>Grade 12 Senior High School</p><strong>TVL — Information &amp;<br>Communications Technology</strong></article>
+        <article class="card learning reveal"><span class="card-icon" aria-hidden="true">↗</span><p class="overline">What I'm learning</p><ul><li>Responsive web interfaces</li><li>Programming fundamentals</li><li>Backend &amp; databases</li><li>AI engineering concepts</li></ul></article>
+        <article class="card interests reveal"><p class="overline">Areas that keep me curious</p><div class="interest-list"><span>Web development</span><span>Programming</span><span>Software development</span><span>Backend</span><span>Databases</span><span>Technology</span><span>AI engineering</span></div></article>
+      </div>
+    </section>
+
+    <section class="section skills-section" id="skills"><div class="container"><div class="section-heading reveal"><div><p class="eyebrow">02 — Toolkit</p><h2>Technologies I'm<br>learning with.</h2></div><p>Tools I am exploring through coursework and hands-on practice—not a list of expert claims.</p></div><div class="tech-grid" id="tech-grid"></div></div></section>
+
+    <section class="section container" id="projects">
+      <div class="section-heading reveal"><div><p class="eyebrow">03 — Selected work</p><h2>Projects, documented<br>honestly.</h2></div><p>This space will grow with verified work. Projects are only published here when a real repository or working demo is ready.</p></div>
+      <div class="project-grid" id="project-grid"></div>
+    </section>
+
+    <section class="section container" id="opportunity">
+      <div class="opportunity card reveal"><div class="opportunity-copy"><span class="available"><i></i> Open for opportunities</span><h2>Ready to learn, contribute,<br>and build alongside others.</h2><p>I am currently open to experiences where I can develop my skills, support a team, and gain practical perspective in technology and software development.</p><a class="button light" href="#contact">Let's connect <span aria-hidden="true">→</span></a></div><ul><li>Student collaborations</li><li>Internships</li><li>Programming projects</li><li>School technology projects</li><li>Open-source contributions</li><li>Learning opportunities</li><li>Entry-level freelance projects</li></ul></div>
+    </section>
+
+    <section class="section container" id="contact">
+      <div class="section-heading reveal"><div><p class="eyebrow">04 — Contact</p><h2>Let's start a<br>conversation.</h2></div><p>Have a learning opportunity, student project, or idea worth exploring? My contact details are configurable and ready to update.</p></div>
+      <div class="contact-grid" id="contact-grid"></div>
+      <div class="contact-cta card reveal"><div><p class="eyebrow">Prefer email?</p><h3>Tell me what you're working on.</h3></div><a class="button primary disabled-config" id="gmail-link" href="#contact" target="_blank" rel="noopener noreferrer">Send me an email <span aria-hidden="true">↗</span></a></div>
+    </section>
+  </main>
+
+  <footer><div class="container footer-grid"><div><a class="brand footer-brand" href="#home"><span>FV</span>Fritz Vohn</a><p>Learning, building, and improving<br>one project at a time.</p></div><div><strong>Explore</strong><a href="#home">Home</a><a href="#about">About</a><a href="#projects">Projects</a><a href="#contact">Contact</a></div><div><strong>Elsewhere</strong><a id="footer-github" href="#contact">GitHub</a><a id="footer-facebook" href="#contact">Facebook</a></div></div><div class="container footer-bottom"><span>© <span id="year"></span> Fritz Vohn</span><span>Designed &amp; built with care.</span></div></footer>
+</body>
+</html>
