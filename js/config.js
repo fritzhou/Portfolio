@@ -5,5 +5,5 @@ window.PORTFOLIO_CONFIG = {
   githubUrl: "https://github.com/fritzhou",
   facebookName: "Fritz Manticahon",
   facebookUrl: "https://www.facebook.com/share/19ZV1CQe5j/",
-  profileImage: "assets/profile-placeholder.svg"
+  profileImage: "assets/profile-placeholder.svg.jpg"
 };
