@@ -104,7 +104,21 @@ document.querySelectorAll(".copy-button").forEach(button => {
 
 const gmail = document.querySelector("#gmail-link");
 if (configured(config.email)) {
-  gmail.href = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(config.email)}&su=${encodeURIComponent("Portfolio Inquiry - Fritz Vohn")}`;
+  const subject = "Portfolio Inquiry - Fritz Vohn";
+  const mobileDevice = /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent) || window.matchMedia("(pointer: coarse)").matches;
+
+  if (mobileDevice) {
+    gmail.href = `mailto:${encodeURIComponent(config.email)}?subject=${encodeURIComponent(subject)}`;
+    gmail.removeAttribute("target");
+    gmail.removeAttribute("rel");
+    gmail.setAttribute("aria-label", "Compose an email in your mail app");
+  } else {
+    gmail.href = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(config.email)}&su=${encodeURIComponent(subject)}`;
+    gmail.target = "_blank";
+    gmail.rel = "noopener noreferrer";
+    gmail.setAttribute("aria-label", "Compose an email in Gmail Web");
+  }
+
   gmail.classList.remove("disabled-config");
 }
 
