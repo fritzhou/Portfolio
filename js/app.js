@@ -2,6 +2,14 @@ const config = window.PORTFOLIO_CONFIG;
 const configured = value => Boolean(value) && !value.startsWith("YOUR_");
 const contactIcons = { email: "✉", github: "⌘", facebook: "f", phone: "☎" };
 
+const profileImage = document.querySelector("#profile-image");
+if (profileImage && configured(config.profileImage)) {
+  profileImage.src = config.profileImage;
+  profileImage.addEventListener("error", () => {
+    profileImage.src = "assets/profile-placeholder.svg";
+  }, { once: true });
+}
+
 const technologyMap = new Map(window.TECHNOLOGIES.map(technology => [technology.name, technology]));
 
 document.querySelector("#tech-grid").innerHTML = window.TECHNOLOGIES.map(technology => `
@@ -58,7 +66,7 @@ const contacts = [
   { key: "email", title: "Email", value: config.email, description: "Best for project and opportunity details." },
   { key: "github", title: "GitHub", value: config.githubUsername, description: "View my repositories and learning progress.", url: config.githubUrl },
   { key: "facebook", title: "Facebook", value: config.facebookName, description: "Connect with me on Facebook.", url: config.facebookUrl },
-  { key: "phone", title: "Phone", value: config.phone, description: "Copy my contact number when configured.", copy: true }
+  { key: "phone", title: "Phone", value: config.phone, description: "Copy my contact number.", copy: true }
 ];
 
 const contactGrid = document.querySelector("#contact-grid");
