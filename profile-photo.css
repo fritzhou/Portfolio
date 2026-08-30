@@ -1,0 +1,21 @@
+.avatar{
+  overflow:hidden;
+  padding:0;
+  flex:0 0 auto;
+}
+
+.avatar img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center;
+  display:block;
+}
+
+@media(max-width:430px){
+  .avatar{
+    width:64px;
+    height:64px;
+    border-radius:18px;
+  }
+}
