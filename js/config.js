@@ -1,8 +1,8 @@
 window.PORTFOLIO_CONFIG = {
   email: "fritz.dayday@lccdo.edu.ph",
-  phone: "YOUR_PHONE_NUMBER",
+  phone: "09262930995",
   githubUsername: "fritzhou",
   githubUrl: "https://github.com/fritzhou",
-  facebookName: "YOUR_FACEBOOK_NAME",
-  facebookUrl: ""
+  facebookName: "Fritz Manticahon",
+  facebookUrl: "https://www.facebook.com/share/19ZV1CQe5j/"
 };
