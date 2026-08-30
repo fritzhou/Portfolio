@@ -1,1 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630"><rect width="1200" height="630" fill="#f5f3ee"/><rect x="70" y="60" width="1060" height="510" rx="36" fill="#fff" stroke="#dce0db"/><rect x="695" y="105" width="380" height="420" rx="28" fill="#18211d"/><text x="130" y="235" font-family="Arial,sans-serif" font-size="30" fill="#147a5b">STUDENT DEVELOPER</text><text x="130" y="340" font-family="Arial,sans-serif" font-size="90" font-weight="700" fill="#18211d">Fritz Vohn.</text><text x="130" y="410" font-family="Arial,sans-serif" font-size="28" fill="#68716c">Learning by building.</text><circle cx="885" cy="250" r="85" fill="#e8c66b"/><text x="885" y="275" text-anchor="middle" font-family="Arial,sans-serif" font-size="55" font-weight="700" fill="#18211d">FV</text></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#f6f8fc"/>
+  <rect x="70" y="60" width="1060" height="510" rx="36" fill="#ffffff" stroke="#dbe4f0"/>
+  <rect x="695" y="105" width="380" height="420" rx="28" fill="#172554"/>
+  <text x="130" y="235" font-family="Arial,sans-serif" font-size="30" fill="#2563eb">STUDENT DEVELOPER</text>
+  <text x="130" y="340" font-family="Arial,sans-serif" font-size="90" font-weight="700" fill="#0f172a">Fritz Vohn.</text>
+  <text x="130" y="410" font-family="Arial,sans-serif" font-size="28" fill="#64748b">Learning by building.</text>
+  <circle cx="885" cy="250" r="85" fill="#dbeafe"/>
+  <text x="885" y="275" text-anchor="middle" font-family="Arial,sans-serif" font-size="55" font-weight="700" fill="#1d4ed8">FV</text>
+</svg>
