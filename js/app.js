@@ -41,9 +41,14 @@ projects.innerHTML = window.PROJECTS.map(project => {
     return technology ? `<span><img src="${technology.icon}" alt="" loading="lazy">${name}</span>` : `<span>${name}</span>`;
   }).join("");
 
-  const liveAction = project.liveUrl
-    ? `<a class="button primary" href="${project.liveUrl}" target="_blank" rel="noopener noreferrer" aria-label="Open live demo of ${project.name}">Live demo <span aria-hidden="true">↗</span></a>`
-    : `<span class="button secondary project-status" aria-label="${project.name} does not have a public live demo yet">In development</span>`;
+  let primaryAction;
+  if (project.downloadUrl) {
+    primaryAction = `<a class="button primary" href="${project.downloadUrl}" aria-label="Download the Android app for ${project.name}">Download Android App <span aria-hidden="true">↓</span></a>`;
+  } else if (project.liveUrl) {
+    primaryAction = `<a class="button primary" href="${project.liveUrl}" target="_blank" rel="noopener noreferrer" aria-label="Open live demo of ${project.name}">Live demo <span aria-hidden="true">↗</span></a>`;
+  } else {
+    primaryAction = `<span class="button secondary project-status" aria-label="${project.name} does not have a public demo or download yet">In development</span>`;
+  }
 
   return `
     <article class="project card reveal">
@@ -54,7 +59,7 @@ projects.innerHTML = window.PROJECTS.map(project => {
         <p>${project.description}</p>
         <div class="project-tech" aria-label="Technologies used">${technologyBadges}</div>
         <div class="button-row project-actions">
-          ${liveAction}
+          ${primaryAction}
           <a class="button secondary" href="${project.repoUrl}" target="_blank" rel="noopener noreferrer" aria-label="Open ${project.name} source code on GitHub">GitHub / Source <span aria-hidden="true">↗</span></a>
         </div>
       </div>
