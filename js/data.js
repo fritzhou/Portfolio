@@ -3,6 +3,8 @@ window.TECHNOLOGIES = [
   { name: "CSS3", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg", note: "Styling" },
   { name: "JavaScript", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg", note: "Interaction" },
   { name: "Python", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg", note: "Programming" },
+  { name: "Kotlin", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/kotlin/kotlin-original.svg", note: "Android development" },
+  { name: "Firebase", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/firebase/firebase-original.svg", note: "Mobile services" },
   { name: "Git", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg", note: "Version control" },
   { name: "GitHub", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg", note: "Collaboration" },
   { name: "Supabase", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/supabase/supabase-original.svg", note: "Backend & database" },
@@ -14,13 +16,23 @@ window.TECHNOLOGIES = [
 
 window.PROJECTS = [
   {
-    name: "VoiceBox",
-    category: "Complaints & Suggestions System",
-    previewLabel: "School Android application",
+    name: "VoiceBox Web",
+    category: "Web-Based Complaint & Suggestion System",
+    previewLabel: "School web platform",
     previewClass: "voicebox",
-    description: "A complaint and suggestion system built for our school, with an Android application for students and supporting web-based services for submitting and tracking feedback. Building VoiceBox helped me practice connecting interface design, application logic, status workflows, and stored data.",
+    description: "The web-based version of VoiceBox for school complaints and suggestions. It provides browser-based submission and tracking flows while helping me practice responsive frontend development, JavaScript application logic, and Supabase-backed data features.",
     technologies: ["HTML5", "CSS3", "JavaScript", "Supabase"],
     repoUrl: "https://github.com/fritzhou/voicebox",
+    liveUrl: "https://voicebox-pi.vercel.app"
+  },
+  {
+    name: "VoiceBox Android App",
+    category: "Android Complaint & Suggestion System",
+    previewLabel: "Native school Android app",
+    previewClass: "voicebox-app",
+    description: "The Android application version of VoiceBox, built for students to use the complaint and suggestion system from their phones. It uses Kotlin and XML for the native Android interface together with Firebase and Supabase services for application and backend features.",
+    technologies: ["Kotlin", "XML", "Firebase", "Supabase"],
+    repoUrl: null,
     downloadUrl: "https://github.com/fritzhou/voicebox/releases/download/v18.00/app-release.apk",
     liveUrl: null
   },
