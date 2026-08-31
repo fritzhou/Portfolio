@@ -16,12 +16,13 @@ window.PROJECTS = [
   {
     name: "VoiceBox",
     category: "Complaints & Suggestions System",
-    previewLabel: "Student service platform",
+    previewLabel: "School Android application",
     previewClass: "voicebox",
-    description: "A web-based complaints and suggestions system designed around school users. I worked on the student-facing experience, submission flow, statuses, and supporting web pages while learning how a real application connects interface decisions with stored data.",
+    description: "A complaint and suggestion system built for our school, with an Android application for students and supporting web-based services for submitting and tracking feedback. Building VoiceBox helped me practice connecting interface design, application logic, status workflows, and stored data.",
     technologies: ["HTML5", "CSS3", "JavaScript", "Supabase"],
     repoUrl: "https://github.com/fritzhou/voicebox",
-    liveUrl: "https://voicebox-pi.vercel.app"
+    downloadUrl: "https://github.com/fritzhou/voicebox/releases/download/v18.00/app-release.apk",
+    liveUrl: null
   },
   {
     name: "School FAQ Chatbot",
