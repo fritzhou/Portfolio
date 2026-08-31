@@ -6,7 +6,7 @@ const profileImage = document.querySelector("#profile-image");
 if (profileImage && configured(config.profileImage)) {
   profileImage.src = config.profileImage;
   profileImage.addEventListener("error", () => {
-    profileImage.src = "assets/profile-placeholder.svg.jpg";
+    profileImage.src = "assets/profile-placeholder.svg";
   }, { once: true });
 }
 
@@ -50,6 +50,10 @@ projects.innerHTML = window.PROJECTS.map(project => {
     primaryAction = `<span class="button secondary project-status" aria-label="${project.name} does not have a public demo or download yet">In development</span>`;
   }
 
+  const sourceAction = project.repoUrl
+    ? `<a class="button secondary" href="${project.repoUrl}" target="_blank" rel="noopener noreferrer" aria-label="Open ${project.name} source code on GitHub">GitHub / Source <span aria-hidden="true">↗</span></a>`
+    : "";
+
   return `
     <article class="project card reveal">
       ${createProjectPreview(project)}
@@ -60,7 +64,7 @@ projects.innerHTML = window.PROJECTS.map(project => {
         <div class="project-tech" aria-label="Technologies used">${technologyBadges}</div>
         <div class="button-row project-actions">
           ${primaryAction}
-          <a class="button secondary" href="${project.repoUrl}" target="_blank" rel="noopener noreferrer" aria-label="Open ${project.name} source code on GitHub">GitHub / Source <span aria-hidden="true">↗</span></a>
+          ${sourceAction}
         </div>
       </div>
     </article>
