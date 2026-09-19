@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp">
+
+        <TextView
+            style="@style/SectionTitle"
+            android:text="@string/setup_title" />
+
+        <TextView
+            style="@style/BodyCopy"
+            android:text="@string/setup_description" />
+
+        <Button
+            android:id="@+id/open_accessibility_settings"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/open_accessibility_settings" />
+
+        <TextView
+            style="@style/SectionTitle"
+            android:layout_marginTop="32dp"
+            android:text="@string/gesture_controls" />
+
+        <TextView style="@style/SettingLabel" android:text="@string/swipe_up_action" />
+        <Spinner android:id="@+id/map_swipe_up" style="@style/SettingSpinner" />
+        <TextView style="@style/SettingLabel" android:text="@string/swipe_down_action" />
+        <Spinner android:id="@+id/map_swipe_down" style="@style/SettingSpinner" />
+        <TextView style="@style/SettingLabel" android:text="@string/swipe_left_action" />
+        <Spinner android:id="@+id/map_swipe_left" style="@style/SettingSpinner" />
+        <TextView style="@style/SettingLabel" android:text="@string/swipe_right_action" />
+        <Spinner android:id="@+id/map_swipe_right" style="@style/SettingSpinner" />
+        <TextView style="@style/SettingLabel" android:text="@string/closed_fist_action" />
+        <Spinner android:id="@+id/map_closed_fist" style="@style/SettingSpinner" />
+
+        <TextView style="@style/SettingLabel" android:text="@string/gesture_sensitivity" />
+        <SeekBar android:id="@+id/gesture_sensitivity" style="@style/SettingSeekBar" android:max="50" />
+        <TextView style="@style/SettingLabel" android:text="@string/gesture_cooldown" />
+        <SeekBar android:id="@+id/gesture_cooldown" style="@style/SettingSeekBar" android:max="900" />
+
+        <TextView
+            style="@style/SectionTitle"
+            android:layout_marginTop="32dp"
+            android:text="@string/air_cursor" />
+
+        <Switch
+            android:id="@+id/cursor_enabled"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            android:text="@string/cursor_enabled" />
+
+        <TextView style="@style/BodyCopy" android:text="@string/cursor_description" />
+        <TextView style="@style/SettingLabel" android:text="@string/cursor_sensitivity" />
+        <SeekBar android:id="@+id/cursor_sensitivity" style="@style/SettingSeekBar" android:max="150" />
+        <TextView style="@style/SettingLabel" android:text="@string/cursor_smoothing" />
+        <SeekBar android:id="@+id/cursor_smoothing" style="@style/SettingSeekBar" android:max="90" />
+        <TextView style="@style/SettingLabel" android:text="@string/pointer_size" />
+        <SeekBar android:id="@+id/pointer_size" style="@style/SettingSeekBar" android:max="44" />
+    </LinearLayout>
+</ScrollView>

@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">AirNudge</string>
+    <string name="accessibility_service_label">AirNudge gesture control</string>
+    <string name="accessibility_service_description">Converts confirmed AirNudge hand gestures into generic Android swipes and Back actions. It does not inspect screen content.</string>
+    <string name="setup_title">Enable gesture control</string>
+    <string name="setup_description">Turn on AirNudge gesture control in Accessibility settings. AirNudge uses the service only to send swipes and the Back action.</string>
+    <string name="open_accessibility_settings">Open Accessibility settings</string>
+    <string name="gesture_controls">Gesture controls</string>
+    <string name="swipe_up_action">Swipe Up action</string>
+    <string name="swipe_down_action">Swipe Down action</string>
+    <string name="swipe_left_action">Swipe Left action</string>
+    <string name="swipe_right_action">Swipe Right action</string>
+    <string name="closed_fist_action">Closed Fist action</string>
+    <string name="gesture_sensitivity">Gesture sensitivity</string>
+    <string name="gesture_cooldown">Gesture cooldown</string>
+    <string name="air_cursor">Air Cursor</string>
+    <string name="cursor_enabled">Enable virtual pointer</string>
+    <string name="cursor_description">Move the pointer with the normalized index-fingertip position. Pinch taps at its current location.</string>
+    <string name="cursor_sensitivity">Cursor sensitivity</string>
+    <string name="cursor_smoothing">Cursor smoothing</string>
+    <string name="pointer_size">Pointer size</string>
+    <string-array name="action_labels">
+        <item>None</item>
+        <item>Swipe Up</item>
+        <item>Swipe Down</item>
+        <item>Swipe Left</item>
+        <item>Swipe Right</item>
+        <item>Back</item>
+    </string-array>
+</resources>
