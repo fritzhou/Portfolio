@@ -68,6 +68,12 @@ public final class AirCursorController {
         smoother.reset();
     }
 
+    /** Immediately removes stale position when tracking loses the hand. */
+    public void onHandLost() {
+        hide();
+        smoother.reset();
+    }
+
     private void showOrMove() {
         int size = Math.round(settings.pointerSizeDp()
                 * service.getResources().getDisplayMetrics().density);

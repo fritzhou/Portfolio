@@ -16,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.fritzvohn.airnudge.gesture.AirGesture;
 import com.fritzvohn.airnudge.settings.AirNudgeSettings;
 import com.fritzvohn.airnudge.settings.UserAction;
+import com.fritzvohn.airnudge.performance.PerformanceProfile;
 
 /** Setup and intentionally small runtime-control screen. */
 public final class MainActivity extends AppCompatActivity {
@@ -35,6 +36,7 @@ public final class MainActivity extends AppCompatActivity {
         bindMapping(R.id.map_swipe_left, AirGesture.SWIPE_LEFT);
         bindMapping(R.id.map_swipe_right, AirGesture.SWIPE_RIGHT);
         bindMapping(R.id.map_closed_fist, AirGesture.CLOSED_FIST);
+        bindPerformanceProfile();
 
         Switch cursorEnabled = findViewById(R.id.cursor_enabled);
         cursorEnabled.setChecked(settings.cursorEnabled());
@@ -66,6 +68,29 @@ public final class MainActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 settings.setAction(gesture, UserAction.values()[position]);
+            }
+
+            @Override public void onNothingSelected(AdapterView<?> parent) { }
+        });
+    }
+
+    private void bindPerformanceProfile() {
+        Spinner spinner = findViewById(R.id.performance_profile);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
+                this,
+                R.array.performance_profile_labels,
+                android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+        spinner.setSelection(settings.performanceProfile().ordinal(), false);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                PerformanceProfile selected = PerformanceProfile.values()[position];
+                if (selected != settings.performanceProfile()) {
+                    settings.applyProfile(selected);
+                    recreate();
+                }
             }
 
             @Override public void onNothingSelected(AdapterView<?> parent) { }

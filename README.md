@@ -41,6 +41,43 @@ The setup screen persists:
 
 Mappings remain app-agnostic and take effect immediately through shared preferences.
 
+## Performance and reliability instrumentation
+
+The camera/hand-tracking pipeline should use the service hooks in this order:
+
+```java
+service.onCameraFrameReceived();
+if (!service.tryBeginAnalysis()) {
+    imageProxy.close();
+    return;
+}
+long inferenceStarted = SystemClock.elapsedRealtimeNanos();
+try {
+    // Run hand inference and emit pointer/gesture results.
+} finally {
+    service.endAnalysis(inferenceStarted);
+    imageProxy.close();
+}
+```
+
+`tryBeginAnalysis()` never queues work: it intentionally skips frames selected by the active profile and records a true dropped frame separately whenever inference is already busy. This bounds memory, avoids stale gesture results, and distinguishes configured sampling from overload. Call `onHandLost()` after the detector's hand-loss threshold; it immediately clears stale pointer state. The next pointer frame records recovery and starts from the new position without interpolation from stale coordinates.
+
+Every 30 seconds, `AirNudgePerformance` logs camera FPS, analysis FPS, average inference time, average gesture latency, PSS memory, busy-dropped frames and percentage, profile-skipped frames, reported false triggers, hand losses/recoveries, battery level/current, battery temperature, and Android thermal status. Capture a session with:
+
+```bash
+adb logcat -s AirNudgePerformance:I AirNudgeLatency:I
+```
+
+Three explicit experiment profiles vary analysis resolution, frequency, tracking confidence, motion history, motion threshold, and cooldown. **Balanced** is the default; profile selection is never changed adaptively without measurements. The camera and detector should read `performanceProfile()` and apply all returned inputs. Compare equal-duration sessions on the same device and workload:
+
+| Profile | Gesture latency | Inference | Dropped frames | False triggers | Memory | Temperature | Battery delta |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| Battery saver | Measure | Measure | Measure | Measure | Measure | Measure | Measure |
+| Balanced | Measure | Measure | Measure | Measure | Measure | Measure | Measure |
+| Responsive | Measure | Measure | Measure | Measure | Measure | Measure | Measure |
+
+Prefer the lowest-latency profile that remains thermally acceptable, has stable memory, and does not materially increase false triggers or battery drain. Do not infer a winner from FPS alone and do not add adaptive switching until repeated device measurements justify concrete thresholds.
+
 ## Latency measurement
 
 Every attempted action writes one structured `AirNudgeLatency` log entry containing:

@@ -30,6 +30,10 @@
             android:layout_marginTop="32dp"
             android:text="@string/gesture_controls" />
 
+        <TextView style="@style/SettingLabel" android:text="@string/performance_profile" />
+        <Spinner android:id="@+id/performance_profile" style="@style/SettingSpinner" />
+        <TextView style="@style/BodyCopy" android:text="@string/performance_profile_description" />
+
         <TextView style="@style/SettingLabel" android:text="@string/swipe_up_action" />
         <Spinner android:id="@+id/map_swipe_up" style="@style/SettingSpinner" />
         <TextView style="@style/SettingLabel" android:text="@string/swipe_down_action" />

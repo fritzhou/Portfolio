@@ -6,6 +6,8 @@
     <string name="setup_description">Turn on AirNudge gesture control in Accessibility settings. AirNudge uses the service only to send swipes and the Back action.</string>
     <string name="open_accessibility_settings">Open Accessibility settings</string>
     <string name="gesture_controls">Gesture controls</string>
+    <string name="performance_profile">Performance experiment profile</string>
+    <string name="performance_profile_description">Balanced is the default. Compare AirNudgePerformance logs on your device before choosing a faster or lower-power profile.</string>
     <string name="swipe_up_action">Swipe Up action</string>
     <string name="swipe_down_action">Swipe Down action</string>
     <string name="swipe_left_action">Swipe Left action</string>
@@ -26,5 +28,10 @@
         <item>Swipe Left</item>
         <item>Swipe Right</item>
         <item>Back</item>
+    </string-array>
+    <string-array name="performance_profile_labels">
+        <item>Battery saver</item>
+        <item>Balanced</item>
+        <item>Responsive</item>
     </string-array>
 </resources>

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import com.fritzvohn.airnudge.gesture.AirGesture;
+import com.fritzvohn.airnudge.performance.PerformanceProfile;
 
 /** Single source of truth for user-tunable control settings and gesture mappings. */
 public final class AirNudgeSettings {
@@ -14,6 +15,7 @@ public final class AirNudgeSettings {
     public static final String POINTER_SIZE = "pointer_size";
     public static final String GESTURE_SENSITIVITY = "gesture_sensitivity";
     public static final String GESTURE_COOLDOWN = "gesture_cooldown";
+    public static final String PERFORMANCE_PROFILE = "performance_profile";
 
     private final SharedPreferences preferences;
 
@@ -48,6 +50,23 @@ public final class AirNudgeSettings {
 
     public long gestureCooldownMillis() {
         return preferences.getInt(GESTURE_COOLDOWN, 350);
+    }
+
+    public PerformanceProfile performanceProfile() {
+        String stored = preferences.getString(
+                PERFORMANCE_PROFILE, PerformanceProfile.BALANCED.name());
+        try {
+            return PerformanceProfile.valueOf(stored);
+        } catch (IllegalArgumentException ignored) {
+            return PerformanceProfile.BALANCED;
+        }
+    }
+
+    public void applyProfile(PerformanceProfile profile) {
+        preferences.edit()
+                .putString(PERFORMANCE_PROFILE, profile.name())
+                .putInt(GESTURE_COOLDOWN, (int) profile.cooldownMillis)
+                .apply();
     }
 
     public UserAction actionFor(AirGesture gesture) {
