@@ -2,6 +2,8 @@ package com.fritzvohn.airnudge;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.Manifest;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.view.View;
@@ -10,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.Switch;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -28,8 +31,23 @@ public final class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         settings = new AirNudgeSettings(this);
 
+        if (!settings.onboardingComplete()) {
+            startActivity(new Intent(this, OnboardingActivity.class));
+        }
+
         findViewById(R.id.open_accessibility_settings).setOnClickListener(view ->
                 startActivity(new Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS)));
+        findViewById(R.id.review_tutorial).setOnClickListener(view ->
+                startActivity(new Intent(this, OnboardingActivity.class)));
+        findViewById(R.id.open_calibration).setOnClickListener(view ->
+                startActivity(new Intent(this, CalibrationActivity.class)));
+
+        Switch controlEnabled = findViewById(R.id.control_enabled);
+        controlEnabled.setChecked(settings.controlEnabled());
+        controlEnabled.setOnCheckedChangeListener((button, checked) -> {
+            edit().putBoolean(AirNudgeSettings.CONTROL_ENABLED, checked).apply();
+            updateSetupStatus();
+        });
 
         bindMapping(R.id.map_swipe_up, AirGesture.SWIPE_UP);
         bindMapping(R.id.map_swipe_down, AirGesture.SWIPE_DOWN);
@@ -53,6 +71,26 @@ public final class MainActivity extends AppCompatActivity {
                 Math.round(settings.minimumGestureConfidence() * 100f) - 50, 50);
         bindSeekBar(R.id.gesture_cooldown, AirNudgeSettings.GESTURE_COOLDOWN,
                 (int) settings.gestureCooldownMillis() - 100, 100);
+    }
+
+    @Override protected void onResume() {
+        super.onResume();
+        if (settings != null) updateSetupStatus();
+    }
+
+    private void updateSetupStatus() {
+        boolean camera = checkSelfPermission(Manifest.permission.CAMERA)
+                == PackageManager.PERMISSION_GRANTED;
+        boolean accessibility = ServiceStatus.isAccessibilityEnabled(this);
+        long heartbeat = settings.serviceHeartbeatMillis();
+        boolean recentlyConnected = heartbeat > 0
+                && android.os.SystemClock.elapsedRealtime() - heartbeat < 90_000L;
+        TextView status = findViewById(R.id.setup_status);
+        if (!camera) status.setText(R.string.status_camera_denied);
+        else if (!accessibility) status.setText(R.string.status_accessibility_disabled);
+        else if (!recentlyConnected) status.setText(R.string.status_service_recovering);
+        else if (!settings.controlEnabled()) status.setText(R.string.status_control_paused);
+        else status.setText(R.string.status_ready);
     }
 
     private void bindMapping(int viewId, AirGesture gesture) {

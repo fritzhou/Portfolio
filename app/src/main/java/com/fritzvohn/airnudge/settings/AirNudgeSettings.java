@@ -16,6 +16,9 @@ public final class AirNudgeSettings {
     public static final String GESTURE_SENSITIVITY = "gesture_sensitivity";
     public static final String GESTURE_COOLDOWN = "gesture_cooldown";
     public static final String PERFORMANCE_PROFILE = "performance_profile";
+    public static final String CONTROL_ENABLED = "control_enabled";
+    public static final String ONBOARDING_COMPLETE = "onboarding_complete";
+    public static final String SERVICE_HEARTBEAT = "service_heartbeat";
 
     private final SharedPreferences preferences;
 
@@ -29,6 +32,26 @@ public final class AirNudgeSettings {
 
     public boolean cursorEnabled() {
         return preferences.getBoolean(CURSOR_ENABLED, false);
+    }
+
+    public boolean controlEnabled() {
+        return preferences.getBoolean(CONTROL_ENABLED, true);
+    }
+
+    public boolean onboardingComplete() {
+        return preferences.getBoolean(ONBOARDING_COMPLETE, false);
+    }
+
+    public void setOnboardingComplete(boolean complete) {
+        preferences.edit().putBoolean(ONBOARDING_COMPLETE, complete).apply();
+    }
+
+    public void writeServiceHeartbeat(long elapsedRealtimeMillis) {
+        preferences.edit().putLong(SERVICE_HEARTBEAT, elapsedRealtimeMillis).apply();
+    }
+
+    public long serviceHeartbeatMillis() {
+        return preferences.getLong(SERVICE_HEARTBEAT, -1L);
     }
 
     public float cursorSensitivity() {

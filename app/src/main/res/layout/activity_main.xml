@@ -18,12 +18,39 @@
             style="@style/BodyCopy"
             android:text="@string/setup_description" />
 
+        <TextView
+            android:id="@+id/setup_status"
+            style="@style/BodyCopy"
+            android:padding="12dp"
+            android:text="@string/status_checking" />
+
+        <Switch
+            android:id="@+id/control_enabled"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            android:text="@string/control_enabled" />
+
         <Button
             android:id="@+id/open_accessibility_settings"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:text="@string/open_accessibility_settings" />
+
+        <Button
+            android:id="@+id/review_tutorial"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/review_tutorial" />
+
+        <Button
+            android:id="@+id/open_calibration"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/open_calibration" />
 
         <TextView
             style="@style/SectionTitle"

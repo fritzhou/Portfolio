@@ -37,6 +37,7 @@ public final class AirNudgeAccessibilityService extends AccessibilityService
         @Override public void run() {
             if (performanceMonitor != null && settings != null) {
                 performanceMonitor.logSnapshot(settings.performanceProfile());
+                settings.writeServiceHeartbeat(android.os.SystemClock.elapsedRealtime());
                 mainHandler.postDelayed(this, 30_000L);
             }
         }
@@ -59,6 +60,7 @@ public final class AirNudgeAccessibilityService extends AccessibilityService
         });
         cursor = new AirCursorController(this, settings);
         settings.preferences().registerOnSharedPreferenceChangeListener(this);
+        settings.writeServiceHeartbeat(android.os.SystemClock.elapsedRealtime());
         Log.i(TAG, "Accessibility action bridge connected");
         mainHandler.postDelayed(periodicPerformanceLog, 30_000L);
     }
@@ -84,6 +86,7 @@ public final class AirNudgeAccessibilityService extends AccessibilityService
             return;
         }
         mainHandler.post(() -> {
+            if (!settings.controlEnabled()) return;
             if (confidence < settings.minimumGestureConfidence()) {
                 return;
             }
@@ -115,7 +118,7 @@ public final class AirNudgeAccessibilityService extends AccessibilityService
 
     /** Receives normalized index-fingertip coordinates from the camera pipeline. */
     public void onPointerFrame(float normalizedX, float normalizedY, long frameTimestampNanos) {
-        if (cursor == null) {
+        if (cursor == null || !settings.controlEnabled()) {
             return;
         }
         if (handWasLost.compareAndSet(true, false)) {
@@ -134,7 +137,7 @@ public final class AirNudgeAccessibilityService extends AccessibilityService
      * analysis; queuing it would increase latency and memory pressure.
      */
     public boolean tryBeginAnalysis() {
-        if (settings == null || performanceMonitor == null) return false;
+        if (settings == null || performanceMonitor == null || !settings.controlEnabled()) return false;
         PerformanceProfile profile = settings.performanceProfile();
         FrameAnalysisGate.Result result = frameGate.tryAcquireResult(profile.analyzeEveryNthFrame);
         if (result == FrameAnalysisGate.Result.ACQUIRED) {
@@ -207,13 +210,23 @@ public final class AirNudgeAccessibilityService extends AccessibilityService
             // Start a clean measurement window so profiles are compared independently.
             performanceMonitor = new TrackingPerformanceMonitor(this);
         }
-        mainHandler.post(cursor::refreshSettings);
+        if (AirNudgeSettings.CONTROL_ENABLED.equals(key) && !settings.controlEnabled()) {
+            cursor.onHandLost();
+            frameGate.resetInFlightWork();
+        }
+        if (AirNudgeSettings.CURSOR_ENABLED.equals(key)
+                || AirNudgeSettings.CURSOR_SENSITIVITY.equals(key)
+                || AirNudgeSettings.CURSOR_SMOOTHING.equals(key)
+                || AirNudgeSettings.POINTER_SIZE.equals(key)) {
+            mainHandler.post(cursor::refreshSettings);
+        }
     }
 
     @Override
     public void onDestroy() {
         mainHandler.removeCallbacks(periodicPerformanceLog);
         if (settings != null) {
+            settings.writeServiceHeartbeat(-1L);
             settings.preferences().unregisterOnSharedPreferenceChangeListener(this);
         }
         if (cursor != null) {

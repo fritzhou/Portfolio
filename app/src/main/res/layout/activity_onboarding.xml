@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="24dp">
+
+    <TextView
+        android:id="@+id/onboarding_progress"
+        style="@style/SettingLabel"
+        android:layout_marginTop="0dp" />
+
+    <ViewFlipper
+        android:id="@+id/onboarding_pages"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:inAnimation="@android:anim/fade_in"
+        android:outAnimation="@android:anim/fade_out">
+
+        <TextView style="@style/OnboardingPage" android:text="@string/onboarding_welcome" />
+        <TextView style="@style/OnboardingPage" android:text="@string/onboarding_gestures" />
+        <TextView style="@style/OnboardingPage" android:text="@string/onboarding_camera" />
+        <TextView style="@style/OnboardingPage" android:text="@string/onboarding_accessibility" />
+    </ViewFlipper>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/onboarding_back"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/back_label" />
+        <Button
+            android:id="@+id/onboarding_primary"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_weight="2"
+            android:text="@string/continue_label" />
+    </LinearLayout>
+</LinearLayout>

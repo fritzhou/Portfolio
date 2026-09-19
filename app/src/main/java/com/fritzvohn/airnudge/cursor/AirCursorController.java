@@ -9,11 +9,13 @@ import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.View;
 import android.view.WindowManager;
+import android.util.Log;
 
 import com.fritzvohn.airnudge.settings.AirNudgeSettings;
 
 /** Lightweight accessibility overlay that maps normalized fingertip coordinates to a pointer. */
 public final class AirCursorController {
+    private static final String TAG = "AirNudgeCursor";
     private final AccessibilityService service;
     private final AirNudgeSettings settings;
     private final WindowManager windowManager;
@@ -89,12 +91,23 @@ public final class AirCursorController {
                     PixelFormat.TRANSLUCENT);
             layoutParams.gravity = Gravity.TOP | Gravity.START;
             position(size);
-            windowManager.addView(cursorView, layoutParams);
+            try {
+                windowManager.addView(cursorView, layoutParams);
+            } catch (RuntimeException error) {
+                Log.e(TAG, "Unable to attach accessibility pointer", error);
+                cursorView = null;
+                layoutParams = null;
+            }
         } else {
             layoutParams.width = size;
             layoutParams.height = size;
             position(size);
-            windowManager.updateViewLayout(cursorView, layoutParams);
+            try {
+                windowManager.updateViewLayout(cursorView, layoutParams);
+            } catch (RuntimeException error) {
+                Log.e(TAG, "Unable to move accessibility pointer", error);
+                hide();
+            }
         }
     }
 
@@ -105,7 +118,11 @@ public final class AirCursorController {
 
     private void hide() {
         if (cursorView != null) {
-            windowManager.removeView(cursorView);
+            try {
+                windowManager.removeView(cursorView);
+            } catch (RuntimeException error) {
+                Log.w(TAG, "Pointer was already detached", error);
+            }
             cursorView = null;
             layoutParams = null;
         }

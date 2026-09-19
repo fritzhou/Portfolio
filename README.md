@@ -4,6 +4,8 @@ Phase 3 connects confirmed hand gestures to app-agnostic Android accessibility a
 
 Phase 4 adds persistent gesture mappings, confidence and cooldown controls, plus a responsive Air Cursor. The cursor is deliberately small in scope: normalized index-fingertip coordinates are scaled around the screen center, lightly smoothed, and displayed as a non-interactive accessibility overlay. A confirmed pinch dispatches a tap at the current pointer position.
 
+Phase 6 adds a first-run gesture and privacy tutorial, explicit camera and accessibility setup, a persistent master control, live setup/recovery status, optional Air Cursor tuning, hardened overlay error handling, and release build configuration. No app-specific profile is included because device measurements have not yet demonstrated that per-app behavior is stable or necessary.
+
 ## Gesture mapping
 
 | Confirmed gesture | Android action |
@@ -106,6 +108,49 @@ adb install -r app/build/outputs/apk/debug/app-debug.apk
 ```
 
 Open AirNudge, select **Open Accessibility settings**, and enable **AirNudge gesture control**. The service requests gesture dispatch capability but explicitly disables window-content retrieval.
+
+### Privacy and permissions
+
+- Camera permission is used by the on-device hand detector. Camera frames must not be sent to the accessibility service or uploaded.
+- Accessibility permission is used only to dispatch configured swipes, Back, and Air Cursor taps.
+- Window-content retrieval is disabled in the accessibility-service configuration.
+- No network permission or application-specific API is declared.
+- App-data backup is disabled so control preferences are not silently restored onto another device.
+
+Denied camera permission leaves controls unavailable and the onboarding flow explains how to retry. If Android has stopped showing the permission dialog, AirNudge opens its system App Info page. Accessibility state is read from Android on every foreground resume; a monotonic service heartbeat distinguishes an enabled-but-recovering service from a connected one. The master control persists through rotation and process recreation and immediately stops analysis, gestures, and the Air Cursor when switched off.
+
+## Release APK
+
+Release builds enable resource shrinking and R8. Signing secrets are supplied only through environment variables and must never be committed:
+
+```bash
+export AIRNUDGE_KEYSTORE=/secure/path/airnudge-release.jks
+export AIRNUDGE_KEYSTORE_PASSWORD='...'
+export AIRNUDGE_KEY_ALIAS='airnudge'
+export AIRNUDGE_KEY_PASSWORD='...'
+gradle clean :app:testDebugUnitTest :app:lintRelease :app:assembleRelease
+```
+
+The signed output is `app/build/outputs/apk/release/app-release.apk`. Without all four variables, Gradle can still compile the release variant for verification but does not produce a distributable signed APK.
+
+## Final device test matrix
+
+Run this matrix on every supported Android version and at least one lower-performance device before distribution:
+
+- [ ] Fresh app launch and completed onboarding
+- [ ] Camera allowed, denied, denied permanently, and restored from App Info
+- [ ] Accessibility disabled, enabled, interrupted, and reconnected
+- [ ] Master control on and off
+- [ ] Background/foreground transitions and screen rotation
+- [ ] TikTok and Facebook/Reels vertical scrolling
+- [ ] Instagram Reels and YouTube scrolling
+- [ ] Browser and Gallery vertical/horizontal navigation
+- [ ] Closed Fist Back, Air Cursor movement, and Pinch tap
+- [ ] Low-light use and deliberate false-trigger attempts
+- [ ] Hand entering, leaving, and re-entering the camera frame
+- [ ] Prolonged usage with performance, thermal, memory, and battery logs captured
+
+The checklist is intentionally not pre-marked: these behaviors require a physical Android device, real camera input, installed third-party apps, and a signed build. Record the device model, Android version, selected performance profile, and Logcat measurements with each run.
 
 ## Manual compatibility test
 

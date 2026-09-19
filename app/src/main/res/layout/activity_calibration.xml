@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="24dp">
+    <TextView style="@style/SectionTitle" android:text="@string/calibration_title" />
+    <TextView style="@style/BodyCopy" android:text="@string/calibration_description" />
+    <TextView style="@style/SettingLabel" android:text="@string/cursor_sensitivity" />
+    <SeekBar android:id="@+id/calibration_sensitivity" style="@style/SettingSeekBar" android:max="150" />
+    <TextView style="@style/SettingLabel" android:text="@string/cursor_smoothing" />
+    <SeekBar android:id="@+id/calibration_smoothing" style="@style/SettingSeekBar" android:max="90" />
+    <TextView style="@style/SettingLabel" android:text="@string/pointer_size" />
+    <SeekBar android:id="@+id/calibration_size" style="@style/SettingSeekBar" android:max="44" />
+    <Button
+        android:id="@+id/calibration_reset"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="@string/reset_recommended" />
+    <Button
+        android:id="@+id/calibration_done"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/done_label" />
+</LinearLayout>
