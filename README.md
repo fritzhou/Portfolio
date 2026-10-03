@@ -18,7 +18,8 @@ A modern, responsive, card-based personal portfolio for Fritz Vohn, a Grade 12 T
 - Technology cards using recognizable Devicon logos
 - Data-driven project cards generated from `js/data.js`
 - Designed browser-style project previews instead of unrelated stock or AI artwork
-- Live Demo and GitHub/Source actions for verified projects
+- Live Demo, download, and GitHub/Source actions where available
+- Clear in-development states for projects without a public build
 - Configurable contact cards
 - Gmail compose shortcut with a pre-filled portfolio subject
 - Copy-to-clipboard interaction for contact details
@@ -27,14 +28,19 @@ A modern, responsive, card-based personal portfolio for Fritz Vohn, a Grade 12 T
 
 ## Selected Projects
 
-The portfolio currently presents verified repositories for:
+The portfolio currently presents:
 
-- **VoiceBox** — complaints and suggestions system
+- **NeuMusic** — offline Android music player with premium themes and a public project website
+- **Lunari** — Android budget, savings, e-wallet, bank account, and credit-card tracker
+- **Buhay Probinsya** — Godot-based 3D Filipino life and farming simulator, currently in active development at v0.8
+- **QR Attendance System** — QR-code based attendance monitoring website
+- **VoiceBox Web** — web-based complaints and suggestions system
+- **VoiceBox Android App** — native Android version of VoiceBox
 - **School FAQ Chatbot** — database-driven school FAQ capstone
 - **Lourdes College SHS Site** — Senior High School information website
 - **StockFlow Inventory System** — full-stack inventory/POS learning project still in development
 
-StockFlow intentionally has no fake Live Demo link while it remains under active development.
+Projects without a public demo or download intentionally show an **In development** state instead of using a fake link.
 
 ## Technologies
 
@@ -46,7 +52,7 @@ The portfolio itself uses:
 - Git / GitHub
 - GitHub Pages
 
-Project technology cards also document tools currently being practiced across my work, including Supabase, PostgreSQL, React, TypeScript, Python, and FastAPI.
+Project technology cards also document tools currently being practiced across my work, including Kotlin, XML, Supabase, Firebase, Godot, GDScript, PostgreSQL, React, TypeScript, Python, and FastAPI.
 
 ## Local Setup
 
