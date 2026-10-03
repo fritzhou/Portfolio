@@ -12,10 +12,52 @@ window.TECHNOLOGIES = [
   { name: "PostgreSQL", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-original.svg", note: "Relational database" },
   { name: "React", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg", note: "Frontend library" },
   { name: "TypeScript", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg", note: "Typed JavaScript" },
-  { name: "FastAPI", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/fastapi/fastapi-original.svg", note: "Python API framework" }
+  { name: "FastAPI", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/fastapi/fastapi-original.svg", note: "Python API framework" },
+  { name: "Godot", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/godot/godot-original.svg", note: "Game engine" },
+  { name: "GDScript", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/godot/godot-original.svg", note: "Godot scripting" }
 ];
 
 window.PROJECTS = [
+  {
+    name: "NeuMusic",
+    category: "Offline Android Music Player",
+    previewLabel: "Music player & premium themes",
+    previewClass: "neumusic",
+    description: "An offline-first Android music player focused on a polished listening experience. NeuMusic supports local music playback, premium visual themes, playback and audio tools, listening insights, optional account and sync features, and backup/restore while keeping the core player useful offline.",
+    technologies: ["Kotlin", "XML", "Supabase"],
+    repoUrl: "https://github.com/fritzhou/neumusic",
+    liveUrl: "https://neumusic.vercel.app"
+  },
+  {
+    name: "Lunari",
+    category: "Android Budget & Savings Tracker",
+    previewLabel: "Personal finance dashboard",
+    previewClass: "lunari",
+    description: "A personal finance application for tracking money across e-wallets such as GCash, bank accounts, and credit cards. Lunari brings together balances, income, expenses, transfers, budgets, savings tracking, and financial goals in a clean mobile dashboard.",
+    technologies: ["Kotlin", "XML"],
+    repoUrl: null,
+    liveUrl: null
+  },
+  {
+    name: "Buhay Probinsya",
+    category: "3D Filipino Life & Farming Simulator",
+    previewLabel: "v0.8 · Active development",
+    previewClass: "buhay-probinsya",
+    description: "An ongoing 3D Filipino provincial-life simulator built in Godot. The project combines farming, NPC interactions, enterable places, vehicles, daily activities, local environments, and long-term life-simulation systems inspired by everyday life in the Philippine province. The current build is v0.8 and is still being expanded and polished.",
+    technologies: ["Godot", "GDScript"],
+    repoUrl: null,
+    liveUrl: null
+  },
+  {
+    name: "QR Attendance System",
+    category: "QR-Code Based Attendance Website",
+    previewLabel: "Attendance monitoring platform",
+    previewClass: "attendance",
+    description: "A QR-code based attendance website designed to make attendance recording faster and more organized. It includes student registration, QR generation and scanning, attendance monitoring, and separate workflows for school staff while keeping the frontend built with plain web technologies.",
+    technologies: ["HTML5", "CSS3", "JavaScript"],
+    repoUrl: "https://github.com/fritzhou/attendancesystem",
+    liveUrl: null
+  },
   {
     name: "VoiceBox Web",
     category: "Web-Based Complaint & Suggestion System",
